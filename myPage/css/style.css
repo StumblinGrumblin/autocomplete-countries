@@ -1,0 +1,17 @@
+#main {
+ background-color: #eeeeee;
+
+ margin: 100px 30%;
+ max-width: 300px;
+ padding: 20px;
+}
+ul {
+  list-style-type: none;
+}
+
+#selectCountry {
+  font-size: 20px;
+}
+#selected {
+  margin-top: 80px;
+}
