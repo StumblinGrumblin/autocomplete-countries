@@ -64,6 +64,9 @@ ul {
   display: inline-block;
 }
 
+#res li.select {
+  background-color: #eff6fc;
+}
 #res div {
   display: inline-block;
   float: left;

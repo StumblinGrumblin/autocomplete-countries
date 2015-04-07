@@ -12,29 +12,38 @@ $(document).ready(function() {
           + "' alt='flag'/>"
           + "<span>"
           + item[1]
-          + "</span> "
+          + "</span><span>"
           + item[0]
-          + "</li>"
+          + "</span></li>"
           );
       })
     }
   });
+
+  // Search field and res list handler
   $('#selectCountry').on("keyup", function (event) {
     var query = $(this).val()
     $("#res li").each(function () {
-      if ($(this).text().search(new RegExp(query, "i")) != -1) {
+      if ($(this).find("span:eq(1)").text().search(new RegExp(query, "i")) != -1) {
         if (query) {
           $(this).addClass("show")
+          if($(this).is($("#res li.show:first"))) {
+            $('#res li.show').not(this).removeClass('select');
+            $(this).addClass('select');
+          }
         } else if (query.length === 0) {
-          $(this).removeClass("show")
+          $(this).removeClass("show select")
         }
       } else {
-        $(this).removeClass("show")
+        $(this).removeClass("show select")
       }
     })
   })
+
+  // Submit Handler
   $('form').submit(function (event) {
-    var select = $('.show').index();
+    var select = $('.select').index();
+    console.log(select);
     $('#selected ul').append("<li><img src='images/flags/"
           + csvData[select][3]
           + "' alt='flag'/>"
