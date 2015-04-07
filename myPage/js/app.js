@@ -24,7 +24,7 @@ $(document).ready(function() {
   $('#selectCountry').on("keyup", function (event) {
     var query = $(this).val()
     $("#res li").each(function () {
-      if ($(this).find("span:eq(1)").text().search(new RegExp(query, "i")) != -1) {
+      if ($(this).find("span:eq(1)").text().search(new RegExp("^" + query, "i")) != -1) {
         if (query) {
           $(this).addClass("show")
           if($(this).is($("#res li.show:first"))) {
