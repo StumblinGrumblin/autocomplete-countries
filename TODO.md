@@ -3,5 +3,5 @@
 + [x] Ensure that 'select' class is being called on submit
 + [ ] Add arrow key support to select specific result
 + [ ] Add mouse click event to select specific result
-+ [ ] Normalize CSS
++ [x] Normalize CSS
 + [x] Ensure that type ahead is matching only characters at same index
