@@ -2,50 +2,43 @@ $(document).ready(function() {
   var csvData;
   var select = 0;
 
-  var selection = function selection(index) {
-    $('#selected ul').append("<li><img src='images/flags/"
-          + csvData[index][3]
-          + "' alt='flag'/>"
-          + "<div><p><strong>"
-          + csvData[index][1]
-          + "</strong></p>"
-          + csvData[index][0]
-          + "</div></li>"
-        );
-  };
-
-  var post = function post(item) {
-      select = (item || $('.select').index());
-      console.log(select);
-      selection(select);
+  var post = function post() {
+      select = $('.select').index();
+      $('#selected ul').append("<li><img src='images/flags/"
+            + csvData[select][3]
+            + "' alt='flag'/>"
+            + "<div><p><strong>"
+            + csvData[select][1]
+            + "</strong></p>"
+            + csvData[select][0]
+            + "</div></li>"
+          );
       select = 0;
       $('form').find("input[type=text]").val("");
       $('form').find("li").removeClass("show");
   };
-  
+
   var selector = function selector(pos) {
     $(pos).addClass('select');
     $(pos).siblings().removeClass('select');
   };
 
-  $.ajax({
-    url: "countries.csv",
-    type: 'GET',
-    dataType: 'text',
-    success: function (data) {
-      csvData = CSVToArray(data);
-      $.each(csvData, function (index, item) {
-        $('#res').append("<li><img src='images/flags/"
-          + item[2]
-          + "' alt='flag'/>"
-          + "<span>"
-          + item[1]
-          + "</span><span>"
-          + item[0]
-          + "</span></li>"
-          );
-      })
-    }
+  // Populate results table from parsed CSV data
+  $.get('countries.csv', function (data) {
+
+    csvData = CSVToArray(data);
+
+    $.each(csvData, function (index, item) {
+      $('#res').append("<li><img src='images/flags/"
+        + item[2]
+        + "' alt='flag'/>"
+        + "<span>"
+        + item[1]
+        + "</span><span>"
+        + item[0]
+        + "</span></li>"
+        );
+    })
   });
 
   // Search field and res list handler
@@ -87,7 +80,7 @@ $(document).ready(function() {
   //Click Handler
   $('body').on('click', '#res li', function () {
     select = ($(this).index());
-    post(select);
+    post();
   });
 
   // Arrow Handler
@@ -98,4 +91,5 @@ $(document).ready(function() {
       select -= 1;
     }
   })
+
 })
