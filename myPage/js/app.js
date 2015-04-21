@@ -27,7 +27,7 @@ $(document).ready(function() {
   $.get('countries.csv', function (data) {
 
     csvData = CSVToArray(data);
-
+    
     $.each(csvData, function (index, item) {
       $('#res').append("<li><img src='images/flags/"
         + item[2]

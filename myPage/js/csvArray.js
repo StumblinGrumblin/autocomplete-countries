@@ -71,7 +71,6 @@ function CSVToArray( strData, strDelimiter ){
 
         }
 
-
         // Now that we have our value string, let's add
         // it to the data array.
         arrData[ arrData.length - 1 ].push( strMatchedValue );
@@ -81,23 +80,19 @@ function CSVToArray( strData, strDelimiter ){
     return( arrData );
 }
 
-// function csvJSON(csv){
-//   var
-//     headers = ["name", "abbr", "imgSM", "imgLG"],
-//     clean = csv.replace(/['"]+/g, ''),
-//     lines = clean.split("\n"),
-//     result = [];
-//   for(var i = 0; i < lines.length; i++){
-//     var
-//       currentline = lines[i].split(","),
-//       obj = {};
-//     for(var j = 0; j < headers.length; j++){
-//       obj[headers[j]] = currentline[j];
-//     }
-//
-//     result.push(obj);
-//
-//   }
-//   return csvData = result; //JSON
-//
-// }
+
+function CSVReader(separators) {
+  this.separators = separators || [","];
+  this.regexp =
+    new RegExp(this.separators.map(function (sep) {
+      return "\\" + sep[0];
+    }).join("|"));
+}
+
+CSVReader.prototype.read = function (str) {
+  var lines = str.trim().split(/\n/);
+  var self = this; // save a reference to outer this-binding
+  return lines.map(function (line) {
+    return line.split(self.regexp);
+  });
+};
