@@ -22,6 +22,7 @@ form {
   border-radius: 4px;
   border-width: 0;
   margin-bottom: 2px;
+  max-width: 378px;
   padding: 20px;
   width: 100%;
 }
@@ -59,7 +60,9 @@ form {
   border-radius: 4px;
   margin: 0;
   padding: 0;
+  position: absolute;
   width: 100%;
+  max-width: 418px;
 }
 #res li {
   /* display: inline-block; */
@@ -73,14 +76,17 @@ form {
 }
 #res li.show {
   display: inline-block;
+  max-width: 378px;
 }
 
 #res li.select {
   background-color: #eff6fc;
+  max-width: 378px;
 }
 #res div {
   display: inline-block;
   float: left;
+  max-width: 378px;
 }
 #res img {
   float: left;

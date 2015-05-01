@@ -4,13 +4,13 @@ $(document).ready(function() {
 
   var post = function post() {
       select = $('.select').index();
-      $('#selected ul').append("<li><img src='images/flags/"
-            + csvData[select][3]
+      $('#selected ul').append("<li><img src='./images/flags/"
+            + csvData[select].ico_128
             + "' alt='flag'/>"
             + "<div><p><strong>"
-            + csvData[select][1]
+            + csvData[select].abbr
             + "</strong></p>"
-            + csvData[select][0]
+            + csvData[select].name
             + "</div></li>"
           );
       select = 0;
@@ -24,18 +24,18 @@ $(document).ready(function() {
   };
 
   // Populate results table from parsed CSV data
-  $.get('countries.csv', function (data) {
+  $.get('./js/countries.json', function (data) {
 
-    csvData = CSVToArray(data);
+    csvData = data;
     
     $.each(csvData, function (index, item) {
-      $('#res').append("<li><img src='images/flags/"
-        + item[2]
+      $('#res').append("<li><img src='./images/flags/"
+        + item.ico_32
         + "' alt='flag'/>"
         + "<span>"
-        + item[1]
+        + item.abbr
         + "</span><span>"
-        + item[0]
+        + item.name
         + "</span></li>"
         );
     })
