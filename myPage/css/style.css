@@ -71,8 +71,12 @@ form {
   padding: 20px;
   width: 100%;
 }
-#res li:first-child {
+#res > .show {
   margin-top: 8px;
+}
+
+#res > .show ~ .show {
+  margin-top: 0px;
 }
 #res li.show {
   display: inline-block;
